@@ -11,6 +11,13 @@ Based on the tech stack detected, generate a comprehensive security skill that i
    - If Node.js/Express: Helmet.js usage, CORS configuration, input validation
    - If Django: CSRF protection, SQL injection prevention, secure authentication
    - If Rails: Strong parameters, mass assignment protection, secure cookies
+   - If ASP.NET Core (.NET/.NET Core):
+     - Authentication/authorization: `UseAuthentication`/`UseAuthorization`, policies, role/claim checks
+     - JWT/OAuth/OpenID Connect patterns (as applicable)
+     - Anti-forgery/CSRF protections for cookie-based auth; understand when Minimal APIs/JSON APIs need CSRF
+     - Secure headers/transport: HTTPS redirection, HSTS, security headers (as appropriate)
+     - Model binding & validation: avoid over-posting, validate inputs, handle deserialization safely
+     - Secrets/config: avoid committing secrets in `appsettings.*`, prefer environment/secret stores
 
 2. **Common Security Patterns**
    - Input validation and sanitization

@@ -18,6 +18,10 @@ Analyze the codebase structure and generate an architecture skill that includes:
    - Component-based architecture
    - Service-oriented architecture
    - Domain-driven design patterns
+   - **.NET solution patterns (if detected)**:
+     - Multi-project solutions (e.g., `src/`, `tests/`), shared libraries, API + application + domain layers
+     - Clean Architecture conventions (Domain/Application/Infrastructure/Web)
+     - ASP.NET Core composition root in `Program.cs` and DI registration conventions
 
 3. **Code Organization Conventions**
    - Import/export patterns

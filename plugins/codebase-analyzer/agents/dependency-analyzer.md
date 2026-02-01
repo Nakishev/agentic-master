@@ -18,6 +18,11 @@ Analyze the project's dependencies and generate a dependency management skill th
    - Semantic versioning usage
    - Lock file management
    - Dependency update strategies
+   - **.NET/NuGet specifics (if detected)**:
+     - Prefer `PackageReference` over `packages.config` (legacy)
+     - Central Package Management via `Directory.Packages.props` (if present)
+     - Treat `packages.lock.json` as a lock file; keep it in sync with restores
+     - Use `PrivateAssets`/`IncludeAssets` appropriately for analyzers/build-time deps
 
 3. **Security Considerations**
    - Dependency vulnerability scanning

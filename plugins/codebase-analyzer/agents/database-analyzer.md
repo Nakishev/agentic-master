@@ -19,6 +19,8 @@ If a database system is detected, generate a comprehensive database skill that i
    - **Django ORM**: Model patterns, querysets, migrations
    - **Active Record**: Model patterns, associations, scopes
    - **SQLAlchemy**: Model patterns, relationships, sessions
+   - **Entity Framework Core (.NET)**: `DbContext` lifetime patterns, configuration (`OnModelCreating`), migrations, tracking vs no-tracking, eager loading (`Include`) and projection patterns
+   - **Dapper (.NET)**: parameterized queries, mapping patterns, repository usage
 
 3. **Query Optimization**
    - N+1 query prevention

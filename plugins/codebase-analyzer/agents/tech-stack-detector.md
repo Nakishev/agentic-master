@@ -14,6 +14,7 @@ Examine the codebase systematically to detect:
    - Check `go.mod` for Go dependencies
    - Check `pom.xml` or `build.gradle` for Java dependencies
    - Check `composer.json` for PHP dependencies
+   - Check `.sln`, `*.csproj`, `Directory.Build.props`, `Directory.Packages.props`, `packages.lock.json`, `NuGet.config`, and `global.json` for .NET/.NET Core (NuGet) dependencies and SDK/version information
 
 2. **Frontend Technologies**
    - React, Vue, Angular, Svelte, or other frameworks
@@ -27,6 +28,11 @@ Examine the codebase systematically to detect:
    - Ruby frameworks (Rails, Sinatra, etc.)
    - Java frameworks (Spring, Spring Boot, etc.)
    - Go frameworks (Gin, Echo, Fiber, etc.)
+   - **.NET/.NET Core**:
+     - ASP.NET Core MVC / Web API (Controllers)
+     - Minimal APIs (`WebApplication.CreateBuilder`, `app.MapGet/MapPost/...`)
+     - Hosting patterns (`Program.cs`, `Startup.cs` for older versions)
+     - Common packages: `Microsoft.AspNetCore.*`, `Swashbuckle.AspNetCore`, `Serilog.AspNetCore`
    - Other backend frameworks
 
 4. **Database Systems**
@@ -39,11 +45,13 @@ Examine the codebase systematically to detect:
    - pytest, unittest (Python)
    - RSpec (Ruby)
    - JUnit (Java)
+   - **.NET**: xUnit, NUnit, MSTest; `Microsoft.AspNetCore.Mvc.Testing` (WebApplicationFactory) for integration tests; coverage tools like Coverlet
 
 6. **Development Tools**
    - TypeScript, ESLint, Prettier
    - Docker, Kubernetes
    - CI/CD tools
+   - **.NET**: `.editorconfig`, Roslyn analyzers, StyleCop analyzers, `dotnet format`, `dotnet test`, `dotnet publish`
 
 ## Output Format
 

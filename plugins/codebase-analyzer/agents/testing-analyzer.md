@@ -12,6 +12,12 @@ Based on the testing frameworks detected, generate a comprehensive testing skill
    - **RSpec**: Describe/context/it blocks, let/before patterns, shared examples
    - **JUnit**: Test class structure, assertions, test fixtures
    - **Cypress/Playwright**: E2E test patterns, page object models
+   - **xUnit/NUnit/MSTest (.NET)**:
+     - Test project structure and naming conventions
+     - Fixtures and shared setup (`IClassFixture`, `CollectionFixture` for xUnit)
+     - Data-driven tests (`[Theory]`/`[InlineData]`, `TestCase`/`TestCaseSource`)
+     - Mocking libraries (Moq, NSubstitute) and when to prefer fakes
+     - ASP.NET Core integration testing with `WebApplicationFactory` (if `Microsoft.AspNetCore.Mvc.Testing` is present)
 
 2. **Testing Types**
    - Unit testing patterns

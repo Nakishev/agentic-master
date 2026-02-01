@@ -13,6 +13,15 @@ If a backend framework is detected, generate a comprehensive backend skill that 
    - **Rails**: Model associations, controller patterns, service objects
    - **Spring Boot**: Controller patterns, service layer, repository patterns
    - **FastAPI**: Dependency injection, router patterns, Pydantic models
+   - **ASP.NET Core (.NET/.NET Core)**:
+     - Minimal APIs vs Controllers: when to use each, routing patterns, endpoint organization
+     - Middleware pipeline: `UseRouting`, `UseAuthentication`, `UseAuthorization`, exception handling, CORS, compression
+     - Built-in DI: service lifetimes (Transient/Scoped/Singleton), constructor injection, Options pattern (`IOptions<T>`)
+     - Configuration: `appsettings.json`, environment-specific config, secrets, strongly-typed settings
+     - Validation: model binding + validation, FluentValidation notes (if detected)
+     - Background work: hosted services (`BackgroundService`), queues/channels, idempotency
+     - Observability: structured logging (Serilog if detected), correlation IDs, health checks, metrics
+     - API docs/versioning: Swagger/OpenAPI (`Swashbuckle.AspNetCore`), versioning strategies
 
 2. **API Design**
    - RESTful API conventions

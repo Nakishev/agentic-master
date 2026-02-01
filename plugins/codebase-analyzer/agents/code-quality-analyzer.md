@@ -11,6 +11,7 @@ Based on the codebase analysis, generate a comprehensive code quality skill that
    - Prettier configuration patterns
    - Pylint/Black patterns (if Python)
    - RuboCop patterns (if Ruby)
+   - **.NET**: `.editorconfig` conventions, Roslyn analyzers, StyleCop analyzers, `dotnet format`
    - Other linter configurations detected
 
 2. **Code Style Conventions**

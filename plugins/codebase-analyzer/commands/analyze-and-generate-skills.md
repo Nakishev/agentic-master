@@ -10,7 +10,7 @@ This command orchestrates 10 specialized agents to comprehensively analyze your 
 
 First, activate the **tech-stack-detector** agent to identify all technologies in use:
 
-- Scan dependency files (package.json, requirements.txt, Gemfile, Cargo.toml, go.mod, etc.)
+- Scan dependency files (package.json, requirements.txt, Gemfile, Cargo.toml, go.mod, `*.csproj`, `.sln`, `Directory.Packages.props`, `global.json`, etc.)
 - Identify frontend frameworks, backend frameworks, databases, testing tools, and build systems
 - Create a comprehensive tech stack inventory
 

@@ -23,6 +23,12 @@ Based on the tech stack detected, generate a comprehensive performance skill tha
    - API response optimization
    - Async processing patterns
    - Load balancing considerations
+   - **ASP.NET Core (.NET) performance notes (if detected)**:
+     - Prefer async/await end-to-end; avoid sync-over-async
+     - Use response compression/caching appropriately
+     - Minimize allocations in hot paths; prefer streaming for large payloads
+     - EF Core performance: `AsNoTracking` for read-only queries, projection, compiled queries (when beneficial)
+     - Logging: structured logging; avoid excessive logging in hot paths
 
 3. **Build Tool Optimization**
    - Webpack/Vite optimization settings
