@@ -1,0 +1,22 @@
+{
+  "name": "agentic-master-marketplace",
+  "owner": {
+    "name": "Alexey Nakishev",
+    "email": "nakishev@gmail.com"
+  },
+  "metadata": {
+    "description": "A marketplace for automatically generating codebase-specific skills and agents",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "agentic-master-skills",
+      "source": "./plugins/codebase-analyzer",
+      "description": "Analyzes codebase and generates tech-stack-specific skills for optimal code generation",
+      "version": "0.1.0",
+      "author": {
+        "name": "Alexey Nakishev"
+      }
+    }
+  ]
+}
