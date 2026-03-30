@@ -41,4 +41,12 @@ Based on the tech stack detected, generate a comprehensive security skill that i
 
 ## Output
 
-Generate a skill file content that can be saved as `security-best-practices.md` in `.claude/skills/` directory. The skill should be specific to the detected technologies and provide actionable security guidelines for code generation.
+Write `.claude/skills/agentic-master-security/SKILL.md`.
+
+**Description**: Name the specific auth systems in use ("Firebase Auth", "JWT", "ASP.NET Core policies") and mention concrete trigger situations: implementing authentication, handling secrets or API keys, configuring CORS, validating inputs, or any time the user mentions security, vulnerabilities, credentials, permissions, encryption, or auth. Be pushy — security concerns touch almost every feature.
+
+**Body**: Target 200–400 lines. Ground every guideline in the actual stack: if the project uses Firebase Auth on the frontend and JWT validation on the backend, show those patterns — not generic "use a good auth library". Read the existing auth-related files and extract actual patterns in use. Include "do this / avoid that" pairs where the risk is real and non-obvious.
+
+If you have substantial reference content (e.g., a full security checklist, OWASP mapping for this stack), put it in `references/security-checklist.md` and link to it.
+
+**Overlap to avoid**: The `dependency-analyzer` covers vulnerability scanning for packages. Focus here on runtime security patterns — authentication, authorization, input handling, secrets management, secure communication.

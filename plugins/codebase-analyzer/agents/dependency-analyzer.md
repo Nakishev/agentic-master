@@ -50,4 +50,10 @@ Analyze the project's dependencies and generate a dependency management skill th
 
 ## Output
 
-Generate a skill file content that can be saved as `dependency-management.md` in `.claude/skills/` directory. The skill should reflect the actual dependency management approach used in the project and provide actionable guidelines for managing dependencies in code generation.
+Write `.claude/skills/agentic-master-dependency-management/SKILL.md`.
+
+**Description**: Name the package managers in use ("NuGet", "npm/pnpm", "pip") and whether any special patterns are in place (monorepo workspaces, Central Package Management, lock files). Include trigger situations: adding a new package, updating a dependency, evaluating a library, auditing for vulnerabilities, or when the user mentions packages, dependencies, versions, or npm/nuget. Be pushy — dependency decisions come up whenever new functionality is needed.
+
+**Body**: Target 150–300 lines. The most valuable content: the project's versioning strategy (are versions pinned? floating? why?), how lock files are handled, how to add/update a dependency in *this* project's workflow, and the "make vs buy" philosophy for *this* codebase. Check the actual package files and note any notable patterns (e.g., Central Package Management, workspace links between packages).
+
+**Overlap to avoid**: The `security-analyzer` covers dependency vulnerability scanning as part of runtime security. Mention it briefly here (e.g., "run `npm audit` / `dotnet list package --vulnerable`") but don't expand into security patterns — that's the security skill's territory.

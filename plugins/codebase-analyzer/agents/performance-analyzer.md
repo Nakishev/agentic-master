@@ -43,4 +43,12 @@ Based on the tech stack detected, generate a comprehensive performance skill tha
 
 ## Output
 
-Generate a skill file content that can be saved as `performance-optimization.md` in `.claude/skills/` directory. The skill should be specific to the detected technologies and provide actionable performance guidelines for code generation.
+Write `.claude/skills/agentic-master-performance/SKILL.md`.
+
+**Description**: Name the specific technologies where performance matters most in this project ("EF Core", "React Query", "Vite", "RabbitMQ"). Include trigger situations: implementing a query, building a list component, choosing whether to cache something, or when the user mentions slow performance, optimization, latency, or bundle size. Be pushy — performance decisions happen constantly in feature work.
+
+**Body**: Target 200–400 lines. For each major technology in the stack, give the 2–3 highest-impact optimizations with concrete before/after examples. Don't list every possible optimization — prioritize the ones that matter most for *this* tech stack and would be easy to miss. For EF Core: `AsNoTracking` for reads. For React: when `useMemo` actually helps. Be specific.
+
+If you have more to say (e.g., profiling workflows, monitoring setup), put it in `references/profiling-guide.md`.
+
+**Overlap to avoid**: The `react-analyzer` covers React-specific performance patterns in depth. Touch on them here only at a high level (e.g., "see the react skill for component-level patterns") and focus on cross-cutting concerns: database, caching, build, async patterns.

@@ -49,8 +49,12 @@ If a database system is detected, generate a comprehensive database skill that i
 
 ## Output
 
-Generate a skill file content that can be saved as `database-patterns.md` in `.claude/skills/` directory. The skill should be specific to the detected database system and ORM, and provide actionable database guidelines for code generation.
+Write `.claude/skills/agentic-master-database/SKILL.md`.
 
-## Conditional Activation
+**Description**: Name the specific database and ORM ("PostgreSQL + Entity Framework Core", "MongoDB + Mongoose", etc.). Include trigger situations: writing a query, adding a migration, defining a relationship, choosing between tracking and no-tracking, or when the user mentions queries, migrations, indexes, transactions, or the ORM name directly. Be pushy — any data access code benefits from this skill.
 
-Only generate this skill if a database system is detected. Otherwise, skip skill generation.
+**Body**: Target 200–400 lines. The most important things to cover: how `DbContext` (or equivalent) is scoped and configured in *this* project; what the N+1 pattern looks like in *this* ORM and how to avoid it; the migration workflow for *this* project; transaction patterns for *this* stack. Read actual entity configurations, actual migration files, and actual query patterns — then reflect those back.
+
+Put ORM reference tables (e.g., full EF Core fluent API cheat sheet) in `references/orm-reference.md`.
+
+**Overlap to avoid**: The `performance-analyzer` touches on database performance at a high level. Go deeper here: actual indexing strategies for *this* database, specific ORM behaviors, migration patterns.

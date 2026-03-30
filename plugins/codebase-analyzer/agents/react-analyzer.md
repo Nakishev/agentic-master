@@ -44,8 +44,12 @@ If React is detected, generate a comprehensive React skill that includes:
 
 ## Output
 
-Generate a skill file content that can be saved as `react-patterns.md` in `.claude/skills/` directory. The skill should match the React version and related libraries detected (Redux, Next.js, etc.) and provide actionable React guidelines for code generation.
+Write `.claude/skills/agentic-master-react/SKILL.md`.
 
-## Conditional Activation
+**Description**: Name the React version and key libraries ("React 19", "Zustand", "React Query", "React Router"). Include trigger situations: building a component, writing a custom hook, managing server state, handling forms, or when the user mentions React, hooks, components, state, rendering, or any library name in the stack. Be pushy — nearly all frontend work on a React project benefits from this skill.
 
-Only generate this skill if React is detected in the tech stack. Otherwise, skip skill generation.
+**Body**: Target 200–400 lines. The most useful content: patterns for this specific React version (React 19 has `useTransition`, `useOptimistic` — show how they're used in context), how state is managed in *this* project (Zustand store shape, React Query conventions), and component organization patterns actually in use. Read existing components and extract patterns from them.
+
+Move deep reference material to `references/hooks-reference.md` or `references/patterns-reference.md`.
+
+**Overlap to avoid**: The `frontend-analyzer` covers project structure, routing organization, Tailwind usage, and general UI patterns. Focus here on React-specific and library-specific patterns: hooks, rendering behavior, state management, component composition — not file organization or CSS.

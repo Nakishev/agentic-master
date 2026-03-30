@@ -57,8 +57,12 @@ If a backend framework is detected, generate a comprehensive backend skill that 
 
 ## Output
 
-Generate a skill file content that can be saved as `backend-patterns.md` in `.claude/skills/` directory. The skill should be specific to the detected backend framework and provide actionable backend guidelines for code generation.
+Write `.claude/skills/agentic-master-backend/SKILL.md`.
 
-## Conditional Activation
+**Description**: Name the exact framework and version ("ASP.NET Core 8", "FastAPI 0.100", etc.) plus key libraries in use. Include trigger situations: writing an endpoint, adding middleware, configuring DI, handling errors, or when the user mentions controllers, routes, middleware, validation, services, or background tasks. Be pushy — most backend work will benefit from this skill.
 
-Only generate this skill if a backend framework is detected. Otherwise, skip skill generation.
+**Body**: Target 200–400 lines. Focus on the *how* for this specific framework — what patterns are idiomatic here, what pitfalls to avoid, what the right error handling shape looks like. Use real patterns from the actual codebase: if the project uses a `Result<T>` type for error handling, show that. If it uses MediatR, show the command/handler pattern as it exists in this project.
+
+Move deep reference material (e.g., full middleware pipeline reference, DI lifetime cheat sheet) to `references/backend-reference.md`.
+
+**Overlap to avoid**: The `architecture-analyzer` covers layer organization and where code lives. Focus here on *how to write* the code within those layers — the API surface, error handling, DI, validation — not *where* to put new files.

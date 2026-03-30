@@ -45,4 +45,12 @@ Generate a comprehensive frontend skill that includes:
 
 ## Output
 
-Generate a skill file content that can be saved as `frontend-patterns.md` in `.claude/skills/` directory. The skill should be specific to the detected frontend framework and provide actionable frontend guidelines for code generation.
+Write `.claude/skills/agentic-master-frontend/SKILL.md`.
+
+**Note**: If React is detected, `react-analyzer` handles React-specific component/hooks patterns. This skill should focus on project structure, build tooling, styling, routing organization, and UI architecture — the things that apply across the whole frontend, not component internals. If React is the only framework detected, still write this skill: there's plenty to cover in structure, Tailwind, routing, and project organization that complements the React skill.
+
+**Description**: Name the specific tooling ("Vite", "Tailwind CSS", "Radix UI", "React Router") and the project structure pattern. Include trigger situations: adding a new page, organizing components, configuring routes, setting up a new feature folder, or when the user mentions project structure, routing, styling, imports, or component organization. Be pushy — project structure decisions come up constantly.
+
+**Body**: Target 200–400 lines. Show the *actual* project structure with the real directory names. Explain the conventions: where feature folders live, how the `api/` layer is organized, how routing is set up in *this* project. For Tailwind, show the specific utility patterns actually used (not the full docs). For Radix UI or similar, show how it's wrapped and used.
+
+**Overlap to avoid**: The `react-analyzer` owns React hooks, state management, and component patterns. Focus here on: directory structure, build configuration, routing organization, styling conventions, API client setup — the scaffolding around components, not components themselves.

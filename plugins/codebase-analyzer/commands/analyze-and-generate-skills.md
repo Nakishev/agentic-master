@@ -1,171 +1,117 @@
 # /analyze-and-generate-skills
 
-Analyze the codebase to detect the tech stack and generate specialized skills for optimal code generation.
+Analyze the codebase and generate a set of tailored Claude Code skills that will make future code generation smarter and more project-aware.
 
-## Process Overview
+## How it works
 
-This command orchestrates 10 specialized agents to comprehensively analyze your codebase and generate tailored skills.
+1. **Detect** — run the `tech-stack-detector` agent first to get a structured inventory of all technologies in use.
+2. **Analyze in parallel** — activate the relevant domain agents based on what was detected.
+3. **Generate skills** — each agent writes a `SKILL.md` into its assigned directory under `.claude/skills/`.
 
-### Step 1: Tech Stack Detection
-
-First, activate the **tech-stack-detector** agent to identify all technologies in use:
-
-- Scan dependency files (package.json, requirements.txt, Gemfile, Cargo.toml, go.mod, `*.csproj`, `.sln`, `Directory.Packages.props`, `global.json`, etc.)
-- Identify frontend frameworks, backend frameworks, databases, testing tools, and build systems
-- Create a comprehensive tech stack inventory
-
-### Step 2: Parallel Agent Analysis
-
-Based on the detected tech stack, activate the following agents in parallel:
-
-1. **security-analyzer** - Always runs to generate security best practices
-2. **performance-analyzer** - Always runs to generate performance optimization guidelines
-3. **react-analyzer** - Only if React is detected
-4. **backend-analyzer** - Only if a backend framework is detected
-5. **frontend-analyzer** - Runs if any frontend framework is detected
-6. **database-analyzer** - Only if a database system is detected
-7. **testing-analyzer** - Runs if testing frameworks are detected
-8. **architecture-analyzer** - Always runs to analyze code structure
-9. **dependency-analyzer** - Always runs to analyze dependencies
-10. **code-quality-analyzer** - Always runs to establish quality standards
-
-### Step 3: Skill Generation
-
-Each agent generates a skill in the `.claude/skills/` directory following this structure:
-
-- Each skill is created in its own subdirectory (prefixed with "agentic-master-")
-- Inside each subdirectory, there is a `SKILL.md` file (case-sensitive, uppercase) that describes how to apply the skill
-- The `SKILL.md` file must follow the official Skill format with YAML frontmatter and Markdown instructions
-
-**SKILL.md File Format:**
-
-Each `SKILL.md` file must have:
-
-1. **YAML frontmatter** (between `---` markers) starting on line 1 with no blank lines before it
-2. **Required fields** in the frontmatter:
-   - `name`: The skill name (e.g., "agentic-master-security")
-   - `description`: A clear description that Claude uses to decide when to apply the skill. This is critical - include specific capabilities and trigger terms users would mention.
-3. **Markdown instructions** after the frontmatter that describe how to apply the skill
-
-**Example SKILL.md structure:**
-
-```markdown
----
-name: agentic-master-security
-description: Security best practices and guidelines specific to your tech stack. Use when writing secure code, reviewing security concerns, or when the user mentions security, vulnerabilities, or authentication.
 ---
 
-# Security Best Practices
+## Step 1: Tech Stack Detection
 
-[Markdown instructions on how to apply security practices...]
+Run `tech-stack-detector` and capture its JSON output. The output determines which agents to activate next.
+
+Scan: `package.json`, `requirements.txt`, `Pipfile`, `Gemfile`, `Cargo.toml`, `go.mod`, `pom.xml`, `build.gradle`, `composer.json`, `*.csproj`, `*.sln`, `Directory.Packages.props`, `global.json`, `NuGet.config`, `packages.lock.json`.
+
+Expected output format:
+```json
+{
+  "frontend": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+  "backend": ["ASP.NET Core", ".NET 8", "MassTransit"],
+  "database": ["PostgreSQL", "Entity Framework Core"],
+  "testing": ["xUnit", "Vitest", "Playwright"],
+  "buildTools": ["Vite", "dotnet"],
+  "other": ["RabbitMQ", "Docker", "Firebase"]
+}
 ```
 
-Generated skills follow this directory structure (all prefixed with "agentic-master-"):
+---
 
-- `.claude/skills/agentic-master-security/` → `SKILL.md` - Security guidelines specific to your stack
-- `.claude/skills/agentic-master-performance/` → `SKILL.md` - Performance patterns and optimizations
-- `.claude/skills/agentic-master-react/` → `SKILL.md` - React-specific patterns (if React detected)
-- `.claude/skills/agentic-master-backend/` → `SKILL.md` - Backend framework patterns (if backend detected)
-- `.claude/skills/agentic-master-frontend/` → `SKILL.md` - Frontend framework patterns (if frontend detected)
-- `.claude/skills/agentic-master-database/` → `SKILL.md` - Database and ORM patterns (if database detected)
-- `.claude/skills/agentic-master-testing/` → `SKILL.md` - Testing strategies and patterns
-- `.claude/skills/agentic-master-architecture/` → `SKILL.md` - Codebase structure and organization patterns
-- `.claude/skills/agentic-master-dependency-management/` → `SKILL.md` - Dependency management best practices
-- `.claude/skills/agentic-master-code-quality/` → `SKILL.md` - Linting, formatting, and quality standards
+## Step 2: Activate Agents in Parallel
 
-## Execution Flow
+Based on the detection JSON, activate these agents simultaneously:
 
-1. **Initialize**: Create `.claude/skills/` directory if it doesn't exist
-2. **Detect Stack**: Run tech-stack-detector agent and capture results
-3. **Activate Agents**: Based on detection results, activate relevant agents:
-   - Always: security, performance, architecture, dependency, code-quality
-   - Conditionally: react (if React), backend (if backend), frontend (if frontend), database (if database), testing (if testing frameworks)
-4. **Generate Skills**: Each agent creates a subdirectory in `.claude/skills/` prefixed with "agentic-master-" and generates a `SKILL.md` file (case-sensitive, uppercase) inside it. The `SKILL.md` file must include:
-   - YAML frontmatter (between `---` markers) starting on line 1 with no blank lines before it
-   - Required `name` field matching the subdirectory name
-   - Required `description` field with specific capabilities and trigger terms that users would naturally say
-   - Markdown instructions after the frontmatter with stack-specific guidance on how to apply the skill
-5. **Summary**: Provide a summary of generated skills and how to use them
+| Agent | Condition |
+|---|---|
+| `security-analyzer` | Always |
+| `performance-analyzer` | Always |
+| `architecture-analyzer` | Always |
+| `dependency-analyzer` | Always |
+| `code-quality-analyzer` | Always |
+| `react-analyzer` | `frontend` array contains React |
+| `frontend-analyzer` | `frontend` array has any non-React framework (Vue, Angular, Svelte, etc.) |
+| `backend-analyzer` | `backend` array is non-empty |
+| `database-analyzer` | `database` array is non-empty |
+| `testing-analyzer` | `testing` array is non-empty |
 
-## Usage
+Pass the full detection JSON to every agent so they can tailor their output and avoid duplicating each other's coverage.
 
-Run `/analyze-and-generate-skills` in your workspace. The command will:
+---
 
-- Scan your codebase comprehensively
-- Detect your complete tech stack
-- Generate 5-10 specialized skills based on what's detected
-- Create subdirectories in `.claude/skills/` prefixed with "agentic-master-" for each skill
-- Generate a `SKILL.md` file (case-sensitive, uppercase) in each subdirectory with:
-  - YAML frontmatter containing `name` and `description` fields
-  - A clear `description` that includes specific capabilities and trigger terms
-  - Markdown instructions describing how to apply that skill
-- Save all skills for automatic future reference
+## Step 3: Skill Generation
 
-## Output
+Each agent writes its output to `.claude/skills/<skill-dir>/SKILL.md`. If the directory already exists, overwrite the skill — the codebase may have changed since the last run.
 
-The command will create skill directories and files following this structure:
+**Directory → Agent mapping:**
+- `agentic-master-security/` → security-analyzer
+- `agentic-master-performance/` → performance-analyzer
+- `agentic-master-architecture/` → architecture-analyzer
+- `agentic-master-dependency-management/` → dependency-analyzer
+- `agentic-master-code-quality/` → code-quality-analyzer
+- `agentic-master-react/` → react-analyzer
+- `agentic-master-frontend/` → frontend-analyzer
+- `agentic-master-backend/` → backend-analyzer
+- `agentic-master-database/` → database-analyzer
+- `agentic-master-testing/` → testing-analyzer
 
-**Skill Directory Structure:**
+**SKILL.md format — every agent must follow this exactly:**
 
 ```
-.claude/skills/
-├── agentic-master-security/
-│   └── SKILL.md          # Always generated
-├── agentic-master-performance/
-│   └── SKILL.md          # Always generated
-├── agentic-master-react/
-│   └── SKILL.md          # Generated if React detected
-├── agentic-master-backend/
-│   └── SKILL.md          # Generated if backend framework detected
-├── agentic-master-frontend/
-│   └── SKILL.md          # Generated if frontend framework detected
-├── agentic-master-database/
-│   └── SKILL.md          # Generated if database detected
-├── agentic-master-testing/
-│   └── SKILL.md          # Generated if testing frameworks detected
-├── agentic-master-architecture/
-│   └── SKILL.md          # Always generated
-├── agentic-master-dependency-management/
-│   └── SKILL.md          # Always generated
-└── agentic-master-code-quality/
-    └── SKILL.md          # Always generated
+---
+name: agentic-master-{skill-name}
+description: {one to three sentences — see guidance below}
+---
+
+# {Title}
+
+{Skill body — see guidance below}
 ```
 
-Each `SKILL.md` file follows the official Skill format:
+The `name` must match the subdirectory name. The frontmatter must start on line 1 with no blank lines before it.
 
-**Required Structure:**
+### Writing a good description
 
-1. **YAML Frontmatter** (between `---` markers):
+The description is how Claude decides whether to load a skill. A weak description means the skill gets ignored even when it would help. A good description:
+- Names the specific technologies ("xUnit", "Entity Framework Core") not generic terms ("database testing")
+- Includes both a purpose statement and a list of trigger situations
+- Is slightly "pushy" — if in doubt, Claude should load the skill
 
-   - Must start on line 1 with no blank lines before it
-   - Must include `name` field (matching the subdirectory name)
-   - Must include `description` field (critical - Claude uses this to decide when to apply the skill)
-   - The `description` should answer: "What does this Skill do?" and "When should Claude use it?" with specific trigger terms
+**Example:**
+> Security best practices for a .NET 8 / React microservices stack. Load this when the user is implementing auth, handling secrets, configuring HTTPS, writing input validation, or mentions security, vulnerabilities, credentials, JWT, Firebase, or Azure security.
 
-2. **Markdown Instructions** (after the frontmatter):
-   - Best practices specific to your tech stack
-   - Code patterns and conventions
-   - Implementation guidelines
-   - Examples relevant to your codebase
+### Writing a good skill body
 
-**Important Notes:**
+The body should read like advice from a senior engineer on this specific project — not generic documentation.
 
-- The filename must be exactly `SKILL.md` (uppercase, case-sensitive)
-- The `description` field is crucial - Claude reads descriptions to find relevant Skills, so include keywords users would naturally say
-- Skills are model-invoked: Claude automatically applies relevant Skills when your request matches their description
-- These skills will be automatically referenced in future code generation prompts to ensure the highest quality output that matches your codebase's patterns, conventions, and best practices
+**Target length: 200–400 lines.** If you have more to say, use progressive disclosure:
+- Keep the most-used patterns in SKILL.md
+- Move deep-dive reference material to `references/<topic>.md` and link to it clearly
 
-## Agent Coordination
+**Quality checklist:**
+- Every guideline is grounded in this project's actual code, libraries, or conventions — not generic advice
+- Code examples use the project's real types, namespaces, and patterns (read the actual source files)
+- Includes "do this / not that" pairs where the distinction matters
+- Explains *why* behind important rules, not just what
+- Avoids duplicating content owned by another skill (trust that the other skills exist)
 
-The command coordinates all agents by:
+---
 
-1. Sharing tech stack detection results with all agents
-2. Ensuring conditional agents only run when relevant technologies are detected
-3. Collecting all generated skill content
-4. Creating subdirectories in `.claude/skills/` prefixed with "agentic-master-" for each skill
-5. Writing `SKILL.md` files (case-sensitive, uppercase) in each subdirectory with:
-   - YAML frontmatter (between `---` markers) starting on line 1
-   - Required `name` and `description` fields in the frontmatter
-   - A clear `description` with specific capabilities and trigger terms
-   - Markdown instructions after the frontmatter on how to apply the skill
-6. Providing a comprehensive summary of what was generated
+## Step 4: Summary
+
+After all skills are written, output a summary listing:
+- Which skills were generated (and which were skipped and why)
+- A one-sentence description of each generated skill
+- The path to each skill file

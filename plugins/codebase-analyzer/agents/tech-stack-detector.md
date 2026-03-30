@@ -55,12 +55,17 @@ Examine the codebase systematically to detect:
 
 ## Output Format
 
-Provide a structured JSON-like summary of detected technologies:
-- Frontend: [list]
-- Backend: [list]
-- Database: [list]
-- Testing: [list]
-- Build Tools: [list]
-- Other: [list]
+Output a single JSON object. Use exact technology names as they appear in dependency files so downstream agents can recognize them. Only include confirmed technologies — if something isn't in a manifest or config file, don't guess.
 
-This information will be used to generate appropriate skills for the codebase.
+```json
+{
+  "frontend": ["React", "TypeScript", "Tailwind CSS", "Vite", "Zustand"],
+  "backend": ["ASP.NET Core", ".NET 8", "MassTransit", "Serilog"],
+  "database": ["PostgreSQL", "Entity Framework Core", "Redis"],
+  "testing": ["xUnit", "Moq", "Vitest", "Playwright"],
+  "buildTools": ["Vite", "dotnet"],
+  "other": ["RabbitMQ", "Docker", "Firebase", "Azure"]
+}
+```
+
+Include all six keys even if some arrays are empty. The orchestrator parses this JSON to decide which agents to activate next.

@@ -51,4 +51,10 @@ Based on the codebase analysis, generate a comprehensive code quality skill that
 
 ## Output
 
-Generate a skill file content that can be saved as `code-quality-standards.md` in `.claude/skills/` directory. The skill should reflect the actual code quality tools and conventions used in the project and provide actionable quality guidelines for code generation.
+Write `.claude/skills/agentic-master-code-quality/SKILL.md`.
+
+**Description**: Name the specific tools configured in this project ("ESLint", "Prettier", "Roslyn analyzers", `.editorconfig`) and the language/style conventions. Include trigger situations: naming a variable, structuring a function, writing comments, running linters, reviewing code, or when the user mentions code style, conventions, naming, clean code, or code review. Be pushy — quality conventions apply to every line of code written.
+
+**Body**: Target 200–350 lines. What matters most: the actual naming conventions for *this* project's languages (extract from existing code — what do they call things?), the linting/formatting tools actually in use and how to run them, and a tight "before/after" code review checklist that captures the patterns Claude would most often get wrong. Don't reproduce tool documentation — give the rules that are specific to *this* project.
+
+**Overlap to avoid**: The `architecture-analyzer` covers module organization and layer structure. The `backend-analyzer` and `react-analyzer` cover idioms for their respective layers. Focus here on language-level conventions: naming, formatting, commenting, type usage, error handling style — things that apply across the whole codebase regardless of layer.
