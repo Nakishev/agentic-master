@@ -10,6 +10,22 @@ Analyze the codebase and generate a set of tailored Claude Code skills that will
 
 ---
 
+## Step 0: Clean Up Previous Skills
+
+Before generating anything, delete all existing `agentic-master-*` directories under `.claude/skills/`. This ensures stale skills from a previous run (or a previous version of the plugin) don't persist alongside the new ones — for example, if the codebase dropped React and the react skill should no longer exist.
+
+```bash
+# Run this before starting analysis
+find .claude/skills -maxdepth 1 -type d -name "agentic-master-*" -exec rm -rf {} +
+```
+
+If `.claude/skills/` doesn't exist yet, create it:
+```bash
+mkdir -p .claude/skills
+```
+
+---
+
 ## Step 1: Tech Stack Detection
 
 Run `tech-stack-detector` and capture its JSON output. The output determines which agents to activate next.
