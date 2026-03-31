@@ -55,7 +55,7 @@ Write `.claude/skills/agentic-master-testing/SKILL.md`.
 
 **Description**: Name the exact testing libraries in use ("xUnit", "Moq", "Vitest", "Playwright") and the types of tests the project writes. Include trigger situations: writing a test, mocking a dependency, setting up test fixtures, writing integration tests, or when the user mentions testing, unit tests, mocking, coverage, or TDD. Be pushy — whenever the user writes or reviews code, testing is relevant.
 
-**Body**: Target 200–400 lines. The most valuable content: the project's test naming conventions (read existing tests and extract them), how the primary mock library is used in *this* codebase, the integration test setup pattern actually in use (e.g., `WebApplicationFactory` if ASP.NET Core testing is present), and what a complete, good test looks like for *this* project's domain. Read a few existing test files and distill the patterns.
+**Body**: Hard limit — SKILL.md must not exceed 400 lines. Before writing, plan your sections: list every topic, cut anything belonging to another skill, keep only the 6–8 most day-to-day-useful topics. Move the rest to `references/<topic>.md` and link from SKILL.md. The most valuable content: the project's test naming conventions (read existing tests and extract them), how the primary mock library is used in *this* codebase, the integration test setup pattern actually in use (e.g., `WebApplicationFactory` if ASP.NET Core testing is present), and what a complete, good test looks like for *this* project's domain. Read a few existing test files and distill the patterns.
 
 Move detailed framework reference (e.g., full Moq cheat sheet, xUnit fixture hierarchy) to `references/testing-reference.md`.
 

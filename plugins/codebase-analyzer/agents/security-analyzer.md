@@ -45,7 +45,7 @@ Write `.claude/skills/agentic-master-security/SKILL.md`.
 
 **Description**: Name the specific auth systems in use ("Firebase Auth", "JWT", "ASP.NET Core policies") and mention concrete trigger situations: implementing authentication, handling secrets or API keys, configuring CORS, validating inputs, or any time the user mentions security, vulnerabilities, credentials, permissions, encryption, or auth. Be pushy — security concerns touch almost every feature.
 
-**Body**: Target 200–400 lines. Ground every guideline in the actual stack: if the project uses Firebase Auth on the frontend and JWT validation on the backend, show those patterns — not generic "use a good auth library". Read the existing auth-related files and extract actual patterns in use. Include "do this / avoid that" pairs where the risk is real and non-obvious.
+**Body**: Hard limit — SKILL.md must not exceed 400 lines. Before writing, plan your sections: list every topic, cut anything belonging to another skill, keep only the 6–8 most day-to-day-useful topics. Move the rest to `references/<topic>.md` and link from SKILL.md. Ground every guideline in the actual stack: if the project uses Firebase Auth on the frontend and JWT validation on the backend, show those patterns — not generic "use a good auth library". Read the existing auth-related files and extract actual patterns in use. Include "do this / avoid that" pairs where the risk is real and non-obvious.
 
 If you have substantial reference content (e.g., a full security checklist, OWASP mapping for this stack), put it in `references/security-checklist.md` and link to it.
 

@@ -112,16 +112,21 @@ The description is how Claude decides whether to load a skill. A weak descriptio
 
 The body should read like advice from a senior engineer on this specific project — not generic documentation.
 
-**Target length: 200–400 lines.** If you have more to say, use progressive disclosure:
-- Keep the most-used patterns in SKILL.md
-- Move deep-dive reference material to `references/<topic>.md` and link to it clearly
+**Hard limit: SKILL.md must not exceed 400 lines.** This is a firm constraint, not a target. Before writing a single line, do this:
+
+1. List every topic you want to cover.
+2. Cut anything that belongs to another skill (see the overlap notes in each agent's Output section).
+3. From what remains, keep only the 6–8 topics a developer would reach for most often day-to-day.
+4. Anything that didn't make the cut goes into `references/<topic>.md` files — link to them clearly from SKILL.md. Reference files have no length limit.
+
+If you finish writing and you're over 400 lines, **do not trim randomly**. Move entire sections wholesale into `references/`. SKILL.md should be the quick-reference card; references/ is the handbook.
 
 **Quality checklist:**
-- Every guideline is grounded in this project's actual code, libraries, or conventions — not generic advice
-- Code examples use the project's real types, namespaces, and patterns (read the actual source files)
-- Includes "do this / not that" pairs where the distinction matters
-- Explains *why* behind important rules, not just what
-- Avoids duplicating content owned by another skill (trust that the other skills exist)
+- Grounded in this project's actual code — read the source files and reflect what's actually there
+- Code examples use the project's real types, namespaces, and patterns
+- "Do this / not that" pairs where the distinction is non-obvious
+- Explains the *why* behind important rules
+- Zero content that belongs to another skill's domain — trust that the other skills exist and will be loaded when relevant
 
 ---
 

@@ -53,7 +53,7 @@ Write `.claude/skills/agentic-master-database/SKILL.md`.
 
 **Description**: Name the specific database and ORM ("PostgreSQL + Entity Framework Core", "MongoDB + Mongoose", etc.). Include trigger situations: writing a query, adding a migration, defining a relationship, choosing between tracking and no-tracking, or when the user mentions queries, migrations, indexes, transactions, or the ORM name directly. Be pushy — any data access code benefits from this skill.
 
-**Body**: Target 200–400 lines. The most important things to cover: how `DbContext` (or equivalent) is scoped and configured in *this* project; what the N+1 pattern looks like in *this* ORM and how to avoid it; the migration workflow for *this* project; transaction patterns for *this* stack. Read actual entity configurations, actual migration files, and actual query patterns — then reflect those back.
+**Body**: Hard limit — SKILL.md must not exceed 400 lines. Before writing, plan your sections: list every topic, cut anything belonging to another skill, keep only the 6–8 most day-to-day-useful topics. Move the rest to `references/<topic>.md` and link from SKILL.md. The most important things to cover: how `DbContext` (or equivalent) is scoped and configured in *this* project; what the N+1 pattern looks like in *this* ORM and how to avoid it; the migration workflow for *this* project; transaction patterns for *this* stack. Read actual entity configurations, actual migration files, and actual query patterns — then reflect those back.
 
 Put ORM reference tables (e.g., full EF Core fluent API cheat sheet) in `references/orm-reference.md`.
 

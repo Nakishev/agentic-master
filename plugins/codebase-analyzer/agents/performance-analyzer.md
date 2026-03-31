@@ -47,7 +47,7 @@ Write `.claude/skills/agentic-master-performance/SKILL.md`.
 
 **Description**: Name the specific technologies where performance matters most in this project ("EF Core", "React Query", "Vite", "RabbitMQ"). Include trigger situations: implementing a query, building a list component, choosing whether to cache something, or when the user mentions slow performance, optimization, latency, or bundle size. Be pushy — performance decisions happen constantly in feature work.
 
-**Body**: Target 200–400 lines. For each major technology in the stack, give the 2–3 highest-impact optimizations with concrete before/after examples. Don't list every possible optimization — prioritize the ones that matter most for *this* tech stack and would be easy to miss. For EF Core: `AsNoTracking` for reads. For React: when `useMemo` actually helps. Be specific.
+**Body**: Hard limit — SKILL.md must not exceed 400 lines. Before writing, plan your sections: list every topic, cut anything belonging to another skill, keep only the 6–8 most day-to-day-useful topics. Move the rest to `references/<topic>.md` and link from SKILL.md. For each major technology in the stack, give the 2–3 highest-impact optimizations with concrete before/after examples. Don't list every possible optimization — prioritize the ones that matter most for *this* tech stack and would be easy to miss. For EF Core: `AsNoTracking` for reads. For React: when `useMemo` actually helps. Be specific.
 
 If you have more to say (e.g., profiling workflows, monitoring setup), put it in `references/profiling-guide.md`.
 

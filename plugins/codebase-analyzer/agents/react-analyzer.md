@@ -48,7 +48,7 @@ Write `.claude/skills/agentic-master-react/SKILL.md`.
 
 **Description**: Name the React version and key libraries ("React 19", "Zustand", "React Query", "React Router"). Include trigger situations: building a component, writing a custom hook, managing server state, handling forms, or when the user mentions React, hooks, components, state, rendering, or any library name in the stack. Be pushy — nearly all frontend work on a React project benefits from this skill.
 
-**Body**: Target 200–400 lines. The most useful content: patterns for this specific React version (React 19 has `useTransition`, `useOptimistic` — show how they're used in context), how state is managed in *this* project (Zustand store shape, React Query conventions), and component organization patterns actually in use. Read existing components and extract patterns from them.
+**Body**: Hard limit — SKILL.md must not exceed 400 lines. Before writing, plan your sections: list every topic, cut anything belonging to another skill, keep only the 6–8 most day-to-day-useful topics. Move the rest to `references/<topic>.md` and link from SKILL.md. The most useful content: patterns for this specific React version (React 19 has `useTransition`, `useOptimistic` — show how they're used in context), how state is managed in *this* project (Zustand store shape, React Query conventions), and component organization patterns actually in use. Read existing components and extract patterns from them.
 
 Move deep reference material to `references/hooks-reference.md` or `references/patterns-reference.md`.
 

@@ -61,7 +61,7 @@ Write `.claude/skills/agentic-master-backend/SKILL.md`.
 
 **Description**: Name the exact framework and version ("ASP.NET Core 8", "FastAPI 0.100", etc.) plus key libraries in use. Include trigger situations: writing an endpoint, adding middleware, configuring DI, handling errors, or when the user mentions controllers, routes, middleware, validation, services, or background tasks. Be pushy — most backend work will benefit from this skill.
 
-**Body**: Target 200–400 lines. Focus on the *how* for this specific framework — what patterns are idiomatic here, what pitfalls to avoid, what the right error handling shape looks like. Use real patterns from the actual codebase: if the project uses a `Result<T>` type for error handling, show that. If it uses MediatR, show the command/handler pattern as it exists in this project.
+**Body**: Hard limit — SKILL.md must not exceed 400 lines. Before writing, plan your sections: list every topic, cut anything belonging to another skill, keep only the 6–8 most day-to-day-useful topics. Move the rest to `references/<topic>.md` and link from SKILL.md. Focus on the *how* for this specific framework — what patterns are idiomatic here, what pitfalls to avoid, what the right error handling shape looks like. Use real patterns from the actual codebase: if the project uses a `Result<T>` type for error handling, show that. If it uses MediatR, show the command/handler pattern as it exists in this project.
 
 Move deep reference material (e.g., full middleware pipeline reference, DI lifetime cheat sheet) to `references/backend-reference.md`.
 
